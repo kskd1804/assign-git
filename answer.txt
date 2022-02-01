@@ -1,7 +1,23 @@
 What is a gitignore file and what should it include for a Java project?
+A gitignore file tells which all files should git ignore from version control. For a Java project, a gitignore file can contains the following files:
+1) *.class - Adding this line ignores all .class files, since we generally do not want compiled Java code files to be added to version control. Its ok even if one does not have the .class files in git as they can be easily generated from the source code present in the git repository.
+2) *.jar - Adding this line ignores all .jar files. This is a good practise because .jar files are package files which generally contain external code libraries that the current project is based on.
+3) *.log - Adding this line ignores all .log files. Log files can be ignored as logs are machine-centric i.e. they are meant to show the steps that particular machine took while executing the program and therefore are of little importance to other developers in the project.
+4) *.project - Adding this line ignores all .project files. .project files generally contain data meant for an individual machine such as local paths etc. Therefore these files are ignored.
+5) Any files which contain confidential information like passwords and tokens which are not meant to be shared with others.
 
 What does a fast-forward in Git mean?
+A fast-forward merge means git did not have to actually proceed with the merge process, as it would suffice if the pointer for the target branch (branch into which the code will be merged) was changed to the pointer for the source branch (branch with the code which needs to be merged). This is possible because the target branch does not have any commits with
+a. New code that is not present in source branch
+b. Code which conflicts with code on source branch.
 
 Why should you have different branches?
+Different branches enable developers to work on multiple tasks simultaneously without causing conflicts and breaking code which was working earlier. 
+The standard practise for creating branches is to create a new branch for every task that a developer is working on while the master branch has the current stable version.
+This way, the developer can be sure that whatever changes he makes on the other tasks he is working on does not affect the code in this particular task.
 
 In a project how many remote Git repositories do you usually have?
+A project generally has a single remote repository to which all developers push their individual code contributions.
+One exception to this rule is when the project is open source, where only the internal team has write access to the repository. 
+Any outsider who wishes to contribute can do so by forking the repository. Forking is the process of creating a copy of the repository onto your Github account with a pointer to the source repository. This allows the outsiders to push their code onto the forked repository and create a pull request once they are done with their tasks. 
+If the internal team is satified with the outsider's work, they merge the request and the code gets included into the source repository.
